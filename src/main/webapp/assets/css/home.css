@@ -1,0 +1,130 @@
+*{
+	 padding: 0;
+	 margin: 0;
+ }
+ .bg{
+ 	width: 1187px;
+    height: 20%;
+ }
+ 
+ 
+.pai {
+    width: 320px;
+    height: 200px;
+    margin-top: 10%;
+    border:none;
+    outline:none;
+}
+.clear{
+	clear: both;
+}
+html,body{
+     height: 100%;
+}
+body{
+	background: #fafafa;
+}
+/*body{*/
+	/*background-image:url('../images/111.jpg');*/
+	/*background-repeat:no-repeat;*/
+	/*background-attachment:scroll;*/
+	/*background-position:top center;*/
+	/*background-size:cover;*/
+/*}*/
+.blue{
+	width: 100%;
+	height: 220px;
+	background-color: #c8e7ff;
+	position: absolute;
+	top: 50%;
+	margin-top: -141px;
+}
+/*绝对居中*/
+.inner{
+	width: 1000px;
+	margin: 0 auto;
+}
+.main{
+	width: 1087px;
+	height: 541px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -500px;
+	background:url('../img/images/bg1.png') top center no-repeat;
+}
+.home{
+	width: 1087px;
+	height: 541px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -500px;
+	background:url('../img/images/bg1.png') top center no-repeat;
+}
+h2{
+	font-size:28px;
+	font-family: "Microsoft YaHei";
+	color: black;
+	font-weight: normal;
+	margin-left: 15%;
+	margin-top: -60px;
+}
+h2 img{
+	margin-right: 15px;
+}
+form{
+	float: right;
+	margin-top: 85px;
+}
+.user input,.password input{
+	width: 250px;
+	height: 50px;
+	border: 1px solid #c5d0dd;
+	border-radius: 5px;
+	-moz-box-shadow:#f9f9f9 0 0 10px inset;
+	-webkit-box-shadow:#f9f9f9 0 0 10px inset;
+	-ms-box-shadow: #f9f9f9 0 0 10px inset;
+	box-shadow: #f9f9f9 0 0 10px inset;
+	margin: 4px 0;
+	padding-left: 50px;
+	padding-top: 15px\9;
+	height: 35px\9;
+}
+.user,.password{
+	position: relative;
+}
+.user .icon,.password .icon{
+	position: absolute;
+	top: 17px;
+	left: 19px;
+}
+input[name=auto]{
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+label{
+	display: inline-block;
+	margin: 10px 0;
+}
+button{
+	border:0 none;
+	background-color:transparent;
+	cursor:pointer;
+	outline:none;
+	color: #fff;
+	font-size: 24px;
+	font-family: "Microsoft YaHei";
+	font-weight: normal;
+	width: 300px;
+	height: 50px;
+	border-radius: 5px;
+	background: -moz-linear-gradient( top,#5B8FBD,#4276a4);
+	background: -webkit-linear-gradient( top,#5B8FBD,#4276a4);
+	background: -o-linear-gradient( top,#5B8FBD,#4276a4);
+	background: -ms-linear-gradient( top,#5B8FBD,#4276a4);
+	background: linear-gradient(top,#5B8FBD,#4276a4);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5B8FBD', endColorstr='#4276a4',GradientType=0 );
+}

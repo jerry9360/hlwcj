@@ -1,0 +1,261 @@
+/**采集日志 logcollect  业务清洗日志 logbusiness 存储日志 logsave ：信用中国  失信被执行人信息 DishonestMan **/testchufa
+create or replace trigger trigger_dishonestman 
+AFTER insert
+ON dishonestman
+FOR EACH ROW
+declare 
+	numlogcollect  number:=0;
+	numlogbusiness  number:=0;
+	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+  
+    select  (NVL(SUM(num),0)+1) into numlogcollect  from logcollect where TYPE='信用中国' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logcollect where TYPE='信用中国' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logcollect (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'信用中国',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogcollect );
+	
+
+    select  (NVL(SUM(num),0)+1) into numlogbusiness  from logbusiness where TYPE='失信被执行人信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logbusiness where TYPE='失信被执行人信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logbusiness (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'失信被执行人信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogbusiness );	
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='失信被执行人信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='失信被执行人信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'失信被执行人信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+	
+  END IF;
+END;
+
+/**采集日志 logcollect  业务清洗日志 logbusiness 存储日志 logsave ：中国裁判文书网 司法判决信息 JudgeDoc **/
+create or replace trigger trigger_JudgeDoc
+AFTER insert
+ON JudgeDoc
+FOR EACH ROW
+declare 
+	numlogcollect  number:=0;
+	numlogbusiness  number:=0;
+	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+  
+	select  (NVL(SUM(num),0)+1) into numlogcollect  from logcollect where TYPE='中国裁判文书网' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logcollect where TYPE='中国裁判文书网' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logcollect (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'中国裁判文书网',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogcollect );
+	
+	select  (NVL(SUM(num),0)+1)  into numlogbusiness from logbusiness where TYPE='司法判决信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logbusiness where TYPE='司法判决信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logbusiness (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'司法判决信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogbusiness );	
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='司法判决信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='司法判决信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'司法判决信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+	
+  END IF;
+END;
+
+/**采集日志logcollect 存储日志 logsave ；政府网站（定制数据源）-09_项目招标、中标信息-项目采集数据 项目招标中标信息 PROJECT_DATA **/
+create or replace trigger trigger_PROJECT_DATA
+AFTER insert
+ON PROJECT_DATA
+FOR EACH ROW
+declare 
+	numlogcollect  number:=0;
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+	select  (NVL(SUM(num),0)+1) into numlogcollect  from logcollect where TYPE=:NEW.UNITNAME and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logcollect where TYPE=:NEW.UNITNAME and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logcollect (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),:NEW.UNITNAME,to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogcollect );
+	
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='项目招标中标信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='项目招标中标信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'项目招标中标信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+	
+  END IF;
+END;
+
+
+/**采集日志logcollect 存储日志 logsave ； 04_源数据管理-互联网采集数据（交通行业政务网站）JW_DATA **/
+
+create or replace trigger trigger_JW_DATA
+AFTER insert
+ON JW_DATA
+FOR EACH ROW
+declare 
+	numlogcollect  number:=0;
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+	select  (NVL(SUM(num),0)+1) into numlogcollect  from logcollect where TYPE=:NEW.source and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logcollect where TYPE=:NEW.source and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logcollect (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),:NEW.source,to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogcollect );
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='交通行业政务网站信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='交通行业政务网站信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'交通行业政务网站信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+  END IF;
+END;
+
+
+
+/**业务清洗日志 logbusiness  存储日志 logsave :项目招标 zhaobiaogg、中标信息-项目采集数据 zhongbiaogg **/
+
+
+create or replace trigger trigger_zhaobiaogg 
+AFTER insert
+ON zhaobiaogg
+FOR EACH ROW
+declare 
+	numlogbusiness  number:=0;
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+
+    select  (NVL(SUM(num),0)+1) into numlogbusiness  from logbusiness where TYPE=:NEW.GG_TYPE and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logbusiness where TYPE=:NEW.GG_TYPE and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logbusiness (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),:NEW.GG_TYPE,to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogbusiness  );	
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='项目招标信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='项目招标信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'项目招标信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+	
+	
+  END IF;
+END;
+
+create or replace trigger trigger_zhongbiaoggg 
+AFTER insert
+ON zhongbiaogg
+FOR EACH ROW
+declare 
+	numlogbusiness  number:=0;
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+
+    select  (NVL(SUM(num),0)+1) into numlogbusiness  from logbusiness where TYPE=:NEW.GG_TYPE and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logbusiness where TYPE=:NEW.GG_TYPE and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logbusiness (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),:NEW.GG_TYPE,to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogbusiness  );	
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='项目中标信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='项目中标信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'项目中标信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+	
+	
+  END IF;
+END;
+
+/**业务清洗日志 logbusiness 存储日志 logsave :从业企业良好信息 CORPGOODINFO 、从业不良信息 CORPBADINFO **/
+
+create or replace trigger trigger_CORPGOODINFO
+AFTER insert
+ON CORPGOODINFO
+FOR EACH ROW
+declare 
+	numlogbusiness  number:=0;
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+
+    select  (NVL(SUM(num),0)+1)  into numlogbusiness from logbusiness where TYPE=:NEW.TYPE and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logbusiness where TYPE=:NEW.TYPE and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logbusiness (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),:NEW.TYPE,to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogbusiness  );	
+ 	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='良好信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='良好信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'良好信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+	
+	
+	
+  END IF;
+END;
+
+
+create or replace trigger trigger_CORPBADINFO
+AFTER insert
+ON CORPBADINFO
+FOR EACH ROW
+declare 
+	numlogbusiness  number:=0;
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+
+    select  (NVL(SUM(num),0)+1) into numlogbusiness  from logbusiness where TYPE=:NEW.TYPE and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logbusiness where TYPE=:NEW.TYPE and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logbusiness (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),:NEW.TYPE,to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogbusiness  );	
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='不良信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='不良信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'不良信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+	
+	
+	
+  END IF;
+END;
+
+
+
+/**业务清洗日志 logbusiness 存储日志 logsave :服务质量投诉信息 SERVICE_COMPLAINT **/
+
+create or replace trigger trigger_SERVICE_COMPLAINT
+AFTER insert
+ON SERVICE_COMPLAINT
+FOR EACH ROW
+declare 
+	numlogbusiness  number:=0;
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+
+    select  (NVL(SUM(num),0)+1) into numlogbusiness  from logbusiness where TYPE='服务质量投诉信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logbusiness where TYPE='服务质量投诉信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logbusiness (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'服务质量投诉信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogbusiness  );	
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='服务质量投诉信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='服务质量投诉信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'服务质量投诉信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );	
+	
+	
+  END IF;
+END;
+/**业务清洗日志 logbusiness 存储日志 logsave :公众表扬信息 PUBLIC_PRISE **/
+create or replace trigger trigger_PUBLIC_PRISE
+AFTER insert
+ON PUBLIC_PRISE
+FOR EACH ROW
+declare 
+	numlogbusiness  number:=0;
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+
+    select  (NVL(SUM(num),0)+1) into numlogbusiness  from logbusiness where TYPE='公众表扬信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logbusiness where TYPE='公众表扬信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logbusiness (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'公众表扬信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogbusiness  );	
+	
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='公众表扬信息' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='公众表扬信息' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'公众表扬信息',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );
+	
+	
+  END IF;
+END;
+/** 存储日志 logsave :96096工单数据 alarm **/
+create or replace trigger trigger_alarm
+AFTER insert
+ON alarm
+FOR EACH ROW
+declare 
+ 	numlogsave  number:=0;
+BEGIN
+  IF INSERTING THEN
+
+    select  (NVL(SUM(num),0)+1) into numlogsave  from logsave where TYPE='96096工单数据' and to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	delete from  logsave where TYPE='96096工单数据' and  to_char(LOGDATE,'YYYY-MM-DD')=to_char(sysdate,'YYYY-MM-DD');
+	INSERT INTO logsave (LOGID,TYPE,LOGDATE,NUM) VALUES ((select  sys_guid()  from dual),'96096工单数据',to_date(to_char(sysdate,'YYYY-MM-DD'),'YYYY-MM-DD'),numlogsave );
+	
+	
+  END IF;
+END;

@@ -1,0 +1,88 @@
+﻿body {
+  background: url("../img/bg.png") repeat-x;
+}
+.page-content {
+	text-align: center;
+}
+.js-pageTitle {
+	margin-bottom: 25px;
+	color: #6D8DA8;
+	text-align: center;
+	font-size: 32px;
+	font-weight: bold;
+}
+.js-titleBar {
+	background: #f9fafe;
+	border-top: 2px solid #6d8da8;
+	border-bottom: 1px solid #ced4e0;
+	line-height: 38px;
+	height: 38px;
+	vertical-align: middle;
+}
+.js-titleBar .js-title {
+ 	width: 100px;
+  	float: left;
+  	font-weight: bold;
+  	height: 36px;
+  	text-align: center;
+  	vertical-align: middle;
+ 	background: #e5eaf0;
+  	color: #006cc1;
+}
+.js-operateBar {
+	background: #f9fafe;
+	border-top: 2px solid #6d8da8;
+	line-height: 40px;
+	height: 40px;
+	vertical-align: middle;
+	margin: 2px auto;
+}
+.js-operateBtn {
+	width: 10%;
+	color: #FFF;
+	background-color: #4B8DF8;
+}
+.js-operateBtn hover {
+	background-color: #2474F6;
+}
+.js-content {
+	width: 100%;
+	vertical-align: middle;
+}
+.js-formArea {
+	margin: 20px auto;
+	width: 85%;
+	height: auto;
+	vertical-align: middle;
+}
+.js-formGroup {
+	margin-top: 5px;
+	min-height: 32px;
+}
+.js-inputLable {
+	float: left;
+	display: inline-block;
+	width: 15%;
+	height: 31px;
+	line-height: 31px;
+	text-align：justify;
+	vertical-align: middle;
+	color: white;
+   	background-color: #347cb9;
+  	border-color: #2a6496;
+}
+.js-input1 {
+	width:35%;
+	float: left;
+	display: inline-block;
+	height: 31px;
+	line-height: 28px;
+}
+.js-input2 {
+	width:85%;
+	float: left;
+	display: inline-block;
+	height: 31px;
+	line-height: 28px;
+}
+

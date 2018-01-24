@@ -1,0 +1,77 @@
+body {
+  background: url("images/bg.png") repeat-x;
+  background-color: #eef6f9;
+}
+/*操作条*/
+.js-actionBar {
+  border-bottom: 2px solid #6d8da8;
+}
+.js-actionBar, .js-content {
+  background: white;
+}
+.js-actionBtn-normal {
+  color: #006cc1;
+  background: #eeeeee;
+  border: 1px solid #cccccc; 
+}
+.js-actionBtn-hover {
+  color: white;
+  background: #0088dd;
+  border: 1px solid #0066bb;
+}
+.js-content {
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+}
+/*状态条*/
+.js-statusBar {
+  background: #6d8da8;
+  color: white;
+}
+.js-title {
+  color: #006cc1;
+}
+.js-sn {
+  color: #6d8da8;
+}
+.js-titleArea, .js-formArea {
+  border-bottom: 2px solid #6d8da8;
+}
+.js-titleBar {
+  border-bottom: 1px solid #ced4e0;
+}
+.js-titleBar .js-title {
+  background: #e5eaf0;
+  color: #006cc1;
+}
+.js-titleBar .js-operateBtn{
+  color:#006cc1;
+}
+.js-formArea .js-titleBar {
+  background: #f9fafe;
+}
+.js-formArea td {
+  color: #777777;
+  border: 1px solid #cccccc;
+}
+.js-formArea td.tag {
+  background-color: #ced4e0;
+  color: #686a69;
+}
+.js-operate {
+  border-color:#ced4e0;
+}
+.js-operateBtn-collapse {
+  background: url("images/collapse.jpg");
+}
+.js-operateBtn-expand {
+  background: url("images/expand.jpg");
+}
+.js-menuitem {
+  background-color: white;
+  color: #bf6435;
+}
+div.js-menuitem-selected {
+  background-color: #bf6435;
+  color: white;
+}

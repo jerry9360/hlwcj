@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+
+	<diskStore path="${java.io.tmpdir}/${system.project_name}/cache" />
+	
+	<cache name="user" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="role" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="permission" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="menu" maxElementsInMemory="1000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="urlSource" maxElementsInMemory="100000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="order_source" maxElementsInMemory="100000" eternal="true"
+		overflowToDisk="true" />
+				
+	<cache name="personinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />	
+		
+	<cache name="corpinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />	
+		
+	<cache name="taglib" maxElementsInMemory="100" eternal="true"
+		overflowToDisk="true" />	
+		
+	<cache name="jwgovdata" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />	
+		
+	<cache name="corpbadinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="corpgood_badinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />		
+		
+	<cache name="corpgoodinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />	
+			
+	<cache name="perbadinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="pergoodinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="hniiservicedata" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />		
+		
+	<cache name="servicedata" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+				
+	<cache name="Jwdata" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />		
+		
+	<cache name="organinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+			
+	<cache name="orgbadinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />	
+			
+	<cache name="orggoodinfo" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+	
+	<cache name="corpmediaexposed" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="judgedoc" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+							
+	<cache name="dishonestMan" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="zhaobiaogg" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="zhongbiaogg" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="hnii_ask" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="hnii_reflect" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+			
+	<cache name="hnii_complaint" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="hnii_prise" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="hnii_suggest" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="service_complaint" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="public_prise" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />	
+		
+	<cache name="hnii_alarm_service" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+			
+	<cache name="hnii_analyze_data" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+	<cache name="hnii_analyze_data_detail" maxElementsInMemory="1000000" eternal="true"
+		overflowToDisk="true" />
+		
+		<!--数据分析缓存  -->
+	<cache name="judgedocanalyze" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	
+	<cache name="dishonestmananalyze" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	
+	<cache name="priseananalyze" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	
+	<cache name="complaintanalyze" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	
+	<cache name="analyzecomplaint" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	
+	<cache name="analyzeconsult" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	<!--服务质量投诉信息查询  项目招标信息查询  表彰、通报批评信息查询 -->
+	
+	<cache name="service_complaintcarno" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	
+	<cache name="corpgood_badinfosearch" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	
+	<cache name="zhaobiaosearch" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	<cache name="analyzeindustry" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	<cache name="analyzebehavior" maxElementsInMemory="1000000" eternal="true"
+	overflowToDisk="true" />
+	 
+</ehcache>

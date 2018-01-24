@@ -1,0 +1,4 @@
+{$packagelastname}.{$table.code}.title={$table.name}
+{$while}
+{$packagelastname}.{$table.code}.{$column.code}={$column.name}
+{$whileEnd}

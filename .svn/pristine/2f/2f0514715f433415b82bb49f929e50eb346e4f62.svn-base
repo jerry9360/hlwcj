@@ -1,0 +1,8 @@
+            {$while}
+  <field name="{$column.code}"      type="{$column.datatype}"   indexed="true"  stored="true"  multiValued="false" /> 
+            {$whileEnd}
+  <field name="text" type="text_ik" indexed="true" stored="true" required="false" multiValued="true" />
+<copyField source="firstlevel" dest="text"/> 
+            {$while}
+<copyField source="{$column.code}" dest="text"/> 
+            {$whileEnd}

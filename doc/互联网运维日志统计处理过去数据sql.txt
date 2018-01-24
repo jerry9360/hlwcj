@@ -1,0 +1,68 @@
+
+drop table logcollect cascade constraints;
+drop table logbusiness cascade constraints;
+drop table logsave cascade constraints;
+
+
+create table logcollect 
+(
+   logid              VARCHAR2(32)         default SYS_GUID() not null,
+   type               VARCHAR2(60)         not null,
+   logdate            DATE                 not null,
+   num                NUMBER               not null,
+   constraint PK_LOGCOLLECT primary key (logid)
+);
+create table logbusiness 
+(
+   logid              VARCHAR2(32)        default SYS_GUID() not null,
+   type               VARCHAR2(60)         not null,
+   logdate            DATE                 not null,
+   num                NUMBER               not null,
+   constraint PK_LOGBUSINESS primary key (logid)
+);
+
+create table logsave 
+(
+   logid              VARCHAR2(32)          default SYS_GUID() not null,
+   type               VARCHAR2(60)         not null,
+   logdate            DATE                 not null,
+   num                NUMBER               not null,
+   constraint PK_LOGSAVE primary key (logid)
+);
+
+insert into logcollect(TYPE,LOGDATE,NUM) select   '信用中国' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from DishonestMan  where CREATE_DATE is not null group by to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') ;
+insert into logbusiness(TYPE,LOGDATE,NUM) select   '失信被执行人信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from DishonestMan  where CREATE_DATE is not null group by to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') ;
+insert into logsave(TYPE,LOGDATE,NUM) select   '失信被执行人信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from DishonestMan  where CREATE_DATE is not null group by to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') ;
+
+
+insert into logcollect(TYPE,LOGDATE,NUM) select  '中国裁判文书网' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from JudgeDoc  where CREATE_DATE is not null group by to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') ;
+insert into logbusiness(TYPE,LOGDATE,NUM) select  '司法判决信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from JudgeDoc  where CREATE_DATE is not null group by to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') ;
+insert into logsave(TYPE,LOGDATE,NUM) select  '司法判决信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from JudgeDoc  where CREATE_DATE is not null   group by to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') ;
+
+
+insert into logcollect(TYPE,LOGDATE,NUM) select    UNITNAME as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from PROJECT_DATA   where CREATE_DATE is not null and    UNITNAME is not null  group by UNITNAME,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD');
+insert into logsave(TYPE,LOGDATE,NUM) select    '项目招标中标信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from PROJECT_DATA  where CREATE_DATE is not null   group by  to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD');
+
+
+insert into logcollect(TYPE,LOGDATE,NUM) select    UNITNAME as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from JW_DATA   where CREATE_DATE is not null and    UNITNAME is not null  group by UNITNAME,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+insert into logsave(TYPE,LOGDATE,NUM) select    '交通行业政务网站信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from JW_DATA  where CREATE_DATE is not null  group by  to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') ; 
+
+insert into logbusiness(TYPE,LOGDATE,NUM) select    GG_TYPE as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from zhaobiaogg  where CREATE_DATE is not null and    GG_TYPE is not null group by GG_TYPE,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+insert into logsave(TYPE,LOGDATE,NUM) select    '项目招标信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from zhaobiaogg  where CREATE_DATE is not null  group by  to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+
+insert into logbusiness(TYPE,LOGDATE,NUM) select    GG_TYPE as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from zhongbiaogg  where CREATE_DATE is not null and    GG_TYPE is not null  group by GG_TYPE,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+insert into logsave(TYPE,LOGDATE,NUM) select    '项目中标信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from zhongbiaogg where CREATE_DATE is not null  group by  to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+
+insert into logbusiness(TYPE,LOGDATE,NUM) select    TYPE as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from CORPGOODINFO  where CREATE_DATE is not null and    TYPE is not null   group by TYPE,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+insert into logsave(TYPE,LOGDATE,NUM) select    '良好信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from CORPGOODINFO where CREATE_DATE is not null   group by  to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+
+insert into logbusiness(TYPE,LOGDATE,NUM) select    TYPE as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from CORPBADINFO   where CREATE_DATE is not null and    TYPE is not null   group by TYPE,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+insert into logsave(TYPE,LOGDATE,NUM) select    '不良信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from CORPBADINFO   where CREATE_DATE is not null group by  to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+
+insert into logbusiness(TYPE,LOGDATE,NUM) select    '服务质量投诉信息' as type ,to_date(to_char(cdate,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from SERVICE_COMPLAINT   where cdate is not null group by  to_date(to_char(cdate,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+insert into logsave(TYPE,LOGDATE,NUM) select    '服务质量投诉信息' as type ,to_date(to_char(cdate,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from SERVICE_COMPLAINT   where cdate is not null group by  to_date(to_char(cdate,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+
+insert into logbusiness(TYPE,LOGDATE,NUM) select    '公众表扬信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from PUBLIC_PRISE   where CREATE_DATE is not null   group by  to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+insert into logsave(TYPE,LOGDATE,NUM) select    '公众表扬信息' as type ,to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from PUBLIC_PRISE   where CREATE_DATE is not null group  by  to_date(to_char(CREATE_DATE,'YYYY-MM-DD'),'YYYY-MM-DD')  ;
+
+insert into logsave(TYPE,LOGDATE,NUM)  select    '96096工单数据' as type ,to_date(to_char(CALLTIME,'YYYY-MM-DD'),'YYYY-MM-DD') as logdate ,sum(1) as sum from alarm where CALLTIME is not null group by  to_date(to_char(CALLTIME,'YYYY-MM-DD'),'YYYY-MM-DD')   ;

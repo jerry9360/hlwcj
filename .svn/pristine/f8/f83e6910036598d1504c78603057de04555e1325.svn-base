@@ -1,0 +1,99 @@
+ 
+ alarm:增加了receive字段，长度4000;
+alter table alarm  add receive varchar2(4000);
+
+ incermentealarm:增加了receive字段，长度4000;
+alter table incrementalarm  add receive varchar2(4000);
+
+
+hnii_analyze_data:增加了receive字段，长度4000;
+ 
+alter table hnii_analyze_data add receive varchar2(4000);
+
+incrementhnii_analyze_data:增加了receive字段，长度4000;
+alter table incrementhnii_analyze_data add receive varchar2(4000);
+
+public_prise:增加了receive字段，长度4000;
+alter table public_prise add belongindustry varchar2(200);
+alter table public_prise add belongpindustry varchar2(200);
+alter table public_prise add receive varchar2(4000);
+alter table public_prise add blnr varchar2(4000);
+corp_id,corp_name,accept_num   null;
+-- Create table
+create table PUBLIC_PRISE
+(
+  id              VARCHAR2(32) not null,
+  corp_id         VARCHAR2(32),
+  corp_name       VARCHAR2(200),
+  accept_num      VARCHAR2(50),
+  prisetime       DATE,
+  priseunit       VARCHAR2(200),
+  casenumber      VARCHAR2(200),
+  name            VARCHAR2(2000),
+  create_date     DATE,
+  modify_date     DATE,
+  state           CHAR(1),
+  carno           VARCHAR2(20),
+  receive         VARCHAR2(3000),
+  blnr            VARCHAR2(4000),
+  belongindustry  VARCHAR2(200),
+  belongpindustry VARCHAR2(200)
+)
+
+service_complaint:增加了receive字段，长度4000;
+alter table service_complaint add belongindustry varchar2(200);
+alter table service_complaint add belongpindustry varchar2(200);
+alter table service_complaint add receive varchar2(4000);
+alter table service_complaint add blnr varchar2(4000);
+corp_id,corp_name,accept_num   null;
+create table SERVICE_COMPLAINT
+(
+  id                VARCHAR2(32) not null,
+  corp_id           VARCHAR2(32),
+  corp_name         VARCHAR2(200),
+  vehicle_no        VARCHAR2(20),
+  complainant_party VARCHAR2(100),
+  event_type_name   VARCHAR2(30),
+  event_time        DATE,
+  event_content     VARCHAR2(1000),
+  accept_org        VARCHAR2(100),
+  feedback          VARCHAR2(1000),
+  respondent_person VARCHAR2(200),
+  udate             TIMESTAMP(6),
+  cdate             TIMESTAMP(6),
+  state             CHAR(1),
+  accept_num        VARCHAR2(50),
+  receive           VARCHAR2(3000),
+  blnr              VARCHAR2(4000),
+  belongindustry    VARCHAR2(200),
+  belongpindustry   VARCHAR2(200)
+)
+
+jubao和baoan表增加的字段：
+alter table jubao add belongpindustry varchar2(200);
+alter table jubao add receive varchar2(4000);
+alter table jubao add blnr varchar2(4000);
+
+alter table baoan add belongpindustry varchar2(200);
+alter table baoan add receive varchar2(4000);
+alter table baoan add blnr varchar2(4000);
+
+alarm 增加唯一索引;
+incrementalarm 增加唯一索引;
+hnii_analyze_data 增加唯一索引;
+incrementhnii_analyze_data 增加唯一索引;
+hnii_dirty_data 增加唯一索引;
+
+incrementalarm，alarm,incrementhnii_analyze_data,hnii_analyze_data增加唯一索引;
+public_prise,service_complaint,jubao,baoan;增加唯一索引;
+
+2017-11-17
+SQL Error: 12899, SQLState: 72000
+ [Cqjw-project]2017-11-17 16:37:52   ORA-12899: 列 "CQBIGDATA"."ZHONGBIAOGG"."FIRST_CANDIDATE" 的值太大 (实际值: 191, 最大值: 150)
+alter table ZHONGBIAOGG modify FIRST_CANDIDATE varchar2(500)
+
+
+alter table ZHONGBIAOGG modify ZHUANGHAO varchar2(2000)
+
+alter table zhaobiaogg modify ZHUANGHAO varchar2(2000)
+
